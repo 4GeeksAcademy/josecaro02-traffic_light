@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 const Home = () => {
+	//     (variable,   func. cambia el estado de la variable) = useState(valor inicial de la variable) 
+	const [likes, setLikes] = useState(85);
+	const [isLike, setIsLike] = useState(false);
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+		//ternary { condicion ? es verdadero : es falso}
+		<div className={`text-center ${isLike ? "color-fuente" : ""}`}>
+			<h1>{likes}</h1>
+			{isLike == false ? <button className="btn btn-success" onClick={() => {
+				setLikes(likes + 1)
+				setIsLike(true)
+			}}>Like</button> : <button className="btn btn-danger" onClick={() => {
+				setLikes(likes - 1)
+				setIsLike(false)
+			}}>Unlike</button>}
+
+
+		</div >
 	);
 };
 
